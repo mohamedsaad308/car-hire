@@ -35,7 +35,7 @@ class CustomerView(MethodView):
                 self.update_customer(cursor, customer_id, data)
                 db.commit()
 
-            return jsonify({"message": "Customer updated successfully"})
+            return jsonify({"message": "Customer updated successfully"}), 201
 
         except Exception as e:
             return jsonify({"error": str(e)}), 500
@@ -47,7 +47,7 @@ class CustomerView(MethodView):
                 self.delete_customer(cursor, customer_id)
                 db.commit()
 
-            return jsonify({"message": "Customer deleted successfully"})
+            return "", 204
 
         except Exception as e:
             return jsonify({"error": str(e)}), 500
