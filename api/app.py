@@ -1,7 +1,7 @@
 from flask import Flask, g
 from api.db import init_db, close_db, get_db
 from api.config import Config
-from api.customers import customer_bp
+from api.customers.urls import customer_bp
 
 
 def create_app():
