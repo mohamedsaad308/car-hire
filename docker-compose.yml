@@ -1,0 +1,33 @@
+version: '3'
+services:
+  api:
+    build:
+      context: ./api
+    ports:
+      - "5000:5000"
+    env_file:
+      - .env
+    depends_on:
+      - db
+    networks:
+      - app-network
+
+  db:
+    image: mysql:latest
+    ports:
+      - "3306:3306"
+    env_file:
+      - .env
+    volumes:
+      - ./create-db-car-hire.sql:/docker-entrypoint-initdb.d/create-db-car-hire.sql
+      - ./populate_customers_table.sql:/docker-entrypoint-initdb.d/populate_customers_table.sql
+      - mysql-data:/var/lib/mysql
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  mysql-data:
