@@ -53,3 +53,5 @@ CREATE TABLE invoices (
     payment_date DATETIME,
     CONSTRAINT fk_booking FOREIGN KEY (booking_id) REFERENCES bookings(booking_id)
 );
+
+CREATE INDEX idx_booking_date ON bookings (booking_date);
